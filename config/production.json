@@ -1,5 +1,7 @@
 {
   "mongoURI":"mongodb+srv://blog:1omnath@askme22-wvai5.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken"
+  "jwtSecret": "mysecrettoken",
+   "client": "http://localhost:3000",
+  "name": "register"
 
 }
