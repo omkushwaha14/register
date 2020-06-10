@@ -13,6 +13,7 @@
   "author": "Ryan Dhungel",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.3.1",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
     "cookie-parser": "^1.4.3",
@@ -33,6 +34,6 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "config": "^3.3.1"
+    
   }
 }
