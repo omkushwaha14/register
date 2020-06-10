@@ -1,5 +1,5 @@
 {
-  "name": "nodeapi",
+  "name": "register",
   "version": "1.0.0",
   "description": "A Node Js API",
   "main": "app.js",
@@ -10,7 +10,7 @@
     "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
 
-  "author": "Ryan Dhungel",
+  "author": "om kus",
   "license": "ISC",
   "dependencies": {
     "config": "^3.3.1",
