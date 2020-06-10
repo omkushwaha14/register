@@ -12,7 +12,8 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
      "jsonwebtoken": "^8.5.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+      "react-google-login": "^5.1.20"
   },
   "scripts": {
     "start": "react-scripts start",
