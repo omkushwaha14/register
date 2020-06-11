@@ -43,7 +43,7 @@ const Menu = ({ history }) => (
             {isAuthenticated() && (
                 <React.Fragment>
                     <li className="navbar navbar-dark bg-primary">
-                        <Link to={`/findpeople`} style={isActive(history, `/findpeople`)} className="nav-link">
+                        <Link className="nav-link" style={isActive(history, '/findpeople')}  to="/findpeople" >
                             Friends
                         </Link>
                     </li>
