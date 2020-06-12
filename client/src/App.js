@@ -4,7 +4,9 @@ import MainRouter from "./MainRouter";
 
 const App = () => (
     <BrowserRouter>
+    <Switch>
       <MainRouter />
+    </Switch>
     </BrowserRouter>
 );
 
