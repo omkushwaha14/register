@@ -59,9 +59,9 @@ class Posts extends Component {
                                 />
                                 <h5 className="card-title">{post.title}</h5>
                                 <p className="card-text">
-                                    {post.body}
+                                    {post.body.substring(0, 200)}
                                 </p>
-                                <br />
+                               
                                 <p className="font-italic mark">
                                     Posted by{" "}
                                     <Link to={`${posterId}`}>
