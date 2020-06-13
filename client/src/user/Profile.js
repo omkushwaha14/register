@@ -7,6 +7,7 @@ import DeleteUser from "./DeleteUser";
 import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import { listByUser } from "../post/apiPost";
+import Spinner from "../core/Spinner";
 
 class Profile extends Component {
   constructor() {
@@ -90,94 +91,79 @@ class Profile extends Component {
     return (
       <div className="container">
         <h2 className="mt-5 mb-5">Profile</h2>
-        <div className="row">
+
+        {!posts.length ? <Spinner/> :
+            <div className="row">
           <div className="col-md-4">
             <img
-              style={{ height: "200px", width: "auto" }}
-              className="img-thumbnail"
-              src={photoUrl}
-              onError={i => (i.target.src = `${DefaultProfile}`)}
-              alt={user.name}
+                style={{ height: "200px", width: "auto" }}
+                className="img-thumbnail"
+                src={photoUrl}
+                onError={i => (i.target.src = `${DefaultProfile}`)}
+                alt={user.name}
             />
           </div>
 
           <table className='table'>
 
-              <thead>
-              <tr>
-                <th>Name:</th>
-                <th >{user.name}</th>
-              </tr>
+            <thead>
+            <tr>
+              <th>Name:</th>
+              <th >{user.name}</th>
+            </tr>
 
-              <tr>
-                <th>Email:</th>
-                <th> {user.email}</th>
-              </tr>
-              <tr>
-                <th>Bio</th>
-                <th> {user.about}</th>
-              </tr>
+            <tr>
+              <th>Email:</th>
+              <th> {user.email}</th>
+            </tr>
+            <tr>
+              <th>Bio</th>
+              <th> {user.about}</th>
+            </tr>
 
-              <tr>
-                <th>Joined</th>
-                <th>{`${new Date(user.created).toDateString()}`}</th>
-              </tr>
+            <tr>
+              <th>Joined</th>
+              <th>{`${new Date(user.created).toDateString()}`}</th>
+            </tr>
 
-              </thead>
-            </table>
-
-
+            </thead>
+          </table>
 
 
 
-            {isAuthenticated().user &&
-            isAuthenticated().user._id === user._id ? (
+
+
+          {isAuthenticated().user &&
+          isAuthenticated().user._id === user._id ? (
               <div className="d-inline-block">
                 <Link
-                  className="btn btn-raised btn-info mr-5"
-                  to={`/post/create`}>
+                    className="btn btn-raised btn-success mr-5"
+                    to={`/post/create`}>
                   Create Post
                 </Link>
 
                 <Link
-                  className="btn btn-raised btn-success mr-5"
-                  to={`/user/edit/${user._id}`}
-                >
+                    className="btn btn-raised btn-success mr-5"
+                    to={`/user/edit/${user._id}`}>
                   Edit Profile
                 </Link>
                 <DeleteUser userId={user._id} />
               </div>
-            ) : (
+          ) : (
               <FollowProfileButton
-                following={this.state.following}
-                onButtonClick={this.clickFollowButton}/>
-            )}
+                  following={this.state.following}
+                  onButtonClick={this.clickFollowButton}/>
+          )}
 
-            <div>
-              {isAuthenticated().user &&
-                isAuthenticated().user.role === "admin" && (
-                  <div className="card mt-5">
-                    <div className="card-body">
-                      <h5 className="card-title">Admin</h5>
-                      <p className="mb-2 text-danger">
-                        Edit/Delete as an Admin
-                      </p>
-                      <Link
-                        className="btn btn-raised btn-success mr-5"
-                        to={`/user/edit/${user._id}`}
-                      >
-                        Edit Profile
-                      </Link>
 
-                      <DeleteUser />
-                    </div>
-                  </div>
-                )}
-            </div>
 
-        </div>
+
+        </div>}
+
+
         <div className="row">
           <div className="col md-12 mt-5 mb-5">
+
             <ProfileTabs
               followers={user.followers}
               following={user.following}
