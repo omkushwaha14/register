@@ -3,6 +3,7 @@ import { findPeople, follow } from "./apiUser";
 import DefaultProfile from "../images/avatar.jpg";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
+import Spinner from "../core/Spinner";
 
 class FindPeople extends Component {
     constructor() {
@@ -89,8 +90,10 @@ class FindPeople extends Component {
                 {open && (
                     <div className="alert alert-success">{followMessage}</div>
                 )}
+                {!users.length ? <Spinner/> : this.renderUsers(users)}
 
-                {this.renderUsers(users)}
+
+
             </div>
         );
     }
