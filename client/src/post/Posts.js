@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { list } from "./apiPost";
-import DefaultPost from "../images/mountains.jpg";
+ import Spinner from "../core/Spinner";
 import { Link } from "react-router-dom";
 
 class Posts extends Component {
@@ -31,10 +31,7 @@ class Posts extends Component {
         this.loadPosts(this.state.page + number);
     };
 
-    loadLess = number => {
-        this.setState({ page: this.state.page - number });
-        this.loadPosts(this.state.page - number);
-    };
+
 
     renderPosts = posts => {
         return (
@@ -50,24 +47,33 @@ class Posts extends Component {
                     return (
                         <div className="card col-md-4" key={i}>
                             <div className="card-body">
+                                <Link to={`/user/${post.postedBy._id}`}>
+                                     <img
+                                        style={{
+                                            borderRadius: "50%",
+                                            border: "1px solid black"
+                                        }}
+                                        className="float-left mr-2"
+                                        height="30px"
+                                        width="30px"
+
+                                        src={`/api/user/photo/${post.postedBy._id}`}
+                                         />
+
+
+                                </Link>
+                                <p className="font-italic mark">
+                                    Posted by <Link to={`${posterId}`}>{posterName} </Link>
+                                    on {new Date(post.created).toDateString()}
+                                </p>
                                 <img
                                     src={`/api/post/photo/${post._id}`}
-                                    alt={post.title}
-
                                     className="img-thunbnail mb-3"
-                                    style={{ height: "200px", width: "100%" }}
+                                    style={{ height: "250px", width: "100%" }}
                                 />
-                                <h5 className="card-title">{post.title}</h5>
-                                <p className="card-text">
+                                <h5 className="card-title" style={{ whiteSpace: 'pre-wrap' }}>{post.title}</h5>
+                                <p className="card-text" style={{ whiteSpace: 'pre-wrap' }}>
                                     {post.body.substring(0, 200)}
-                                </p>
-                               
-                                <p className="font-italic mark">
-                                    Posted by{" "}
-                                    <Link to={`${posterId}`}>
-                                        {posterName}{" "}
-                                    </Link>
-                                    on {new Date(post.created).toDateString()}
                                 </p>
                                 <Link
                                     to={`/post/${post._id}`}
@@ -83,36 +89,24 @@ class Posts extends Component {
     };
 
     render() {
-        const { posts, page } = this.state;
+        const { posts,page } = this.state;
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5">
-                    {!posts.length ? "loading..." : "Recent Posts"}
-                </h2>
+                {!posts.length ? <Spinner/> : this.renderPosts(posts)}
 
-                {this.renderPosts(posts)}
 
-                {page > 1 ? (
-                    <button
-                        className="btn btn-raised btn-warning mr-5 mt-5 mb-5"
-                        onClick={() => this.loadLess(1)}
-                    >
-                        Previous ({this.state.page - 1})
+
+                {!posts.length ?  <Spinner/>:
+                    <button className="btn btn-raised btn-success mt-5 mb-5"
+                        onClick={() => this.loadMore(1)}>
+
+                        Loadmore...
                     </button>
-                ) : (
-                    ""
-                )}
 
-                {posts.length ? (
-                    <button
-                        className="btn btn-raised btn-success mt-5 mb-5"
-                        onClick={() => this.loadMore(1)}
-                    >
-                        Next ({page + 1})
-                    </button>
-                ) : (
-                    ""
-                )}
+
+                }
+
+
             </div>
         );
     }
