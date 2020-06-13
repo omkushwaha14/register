@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { singlePost, remove, like, unlike } from './apiPost';
-import DefaultPost from '../images/mountains.jpg';
+import Spinner from "../core/Spinner";
 import { Link, Redirect } from 'react-router-dom';
 import { isAuthenticated } from '../auth';
 import Comment from './Comment';
@@ -90,76 +90,59 @@ class SinglePost extends Component {
 
         return (
             <div className="card-body">
-                <img
-                    src={`/api/post/photo/${post._id}`}
-                    alt={post.title}
-                    onError={i => (i.target.src = `${DefaultPost}`)}
-                    className="img-thunbnail mb-3"
-                    style={{
-                        height: '300px',
-                        width: '100%',
-                        objectFit: 'cover'
-                    }}
-                />
+                <h5 className="card-title">{post.title}</h5>
+                <Link to={`/user/${post.postedBy._id}`}>
+                    <img
+                        style={{
+                            borderRadius: "50%",
+                            border: "1px solid black"
+                        }}
+                        className="float-left mr-2"
+                        height="30px"
+                        width="30px"
 
-                {like ? (
-                    <h3 onClick={this.likeToggle}>
-                        <i
-                            className="fa fa-thumbs-up"
-                            style={{ padding: '10px', borderRadius: '50%' }}
-                        />{' '}
-                        {likes} likes
-                    </h3>
-                ) : (
-                    <h4 onClick={this.likeToggle}>
-                        <i
-                            className="fa fa-thumbs-up "
-                            style={{ padding: '10px', borderRadius: '50%' }}
-                        />{' '}
-                        {likes} likes
-                    </h4>
-                )}
+                        src={`/api/user/photo/${post.postedBy._id}`}
+                        />
 
-                <p className="card-text">{post.body}</p>
-                <br />
+                </Link>
                 <p className="font-italic mark">
                     Posted by <Link to={`${posterId}`}>{posterName} </Link>
                     on {new Date(post.created).toDateString()}
                 </p>
+                <img src={`/api/post/photo/${post._id}`} style={{ height: "600px", width: "100%" }}/>
+
+                <p className="card-text"  style={{ whiteSpace: 'pre-wrap' }}>{post.body}</p>
+                <br />
+
                 <div className="d-inline-block">
-                    <Link to={`/`} className="btn btn-raised btn-primary btn-sm mr-5">
-                        Back to posts
-                    </Link>
+                    <Link to={`/`} className="btn btn-raised btn-primary btn-sm mr-4">Back to posts</Link>
 
                     {isAuthenticated().user && isAuthenticated().user._id === post.postedBy._id && (
                         <>
-                            <Link to={`/post/edit/${post._id}`} className="btn btn-raised btn-warning btn-sm mr-5">
-                                Update Post
-                            </Link>
-                            <button onClick={this.deleteConfirmed} className="btn btn-raised btn-danger">
-                                Delete Post
-                            </button>
+                            <Link to={`/post/edit/${post._id}`} className="btn btn-raised btn-warning btn-sm mr-4">Edit Post</Link>
+                            <button onClick={this.deleteConfirmed} className="btn btn-raised btn-danger btn-sm mr-4">Delete Post</button>
                         </>
                     )}
 
                     <div>
-                        {isAuthenticated().user && isAuthenticated().user.role === 'admin' && (
-                            <div className="card mt-5">
-                                <div className="card-body">
-                                    <h5 className="card-title">Admin</h5>
-                                    <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
-                                    <Link
-                                        to={`/post/edit/${post._id}`}
-                                        className="btn btn-raised btn-warning btn-sm mr-5"
-                                    >
-                                        Update Post
-                                    </Link>
-                                    <button onClick={this.deleteConfirmed} className="btn btn-raised btn-danger">
-                                        Delete Post
-                                    </button>
-                                </div>
-                            </div>
+                        {like ? (
+                            <h3 onClick={this.likeToggle}>
+                                <i
+                                    className="fa fa-thumbs-up"
+                                    style={{ padding: '10px', borderRadius: '50%' }}
+                                />{' '}
+                                {likes} likes
+                            </h3>
+                        ) : (
+                            <h4 onClick={this.likeToggle}>
+                                <i
+                                    className="fa fa-thumbs-up "
+                                    style={{ padding: '10px', borderRadius: '50%' }}
+                                />{' '}
+                                {likes} likes
+                            </h4>
                         )}
+                        <Comment postId={post._id} comments={this.state.comments.reverse()} updateComments={this.updateComments} />
                     </div>
                 </div>
             </div>
@@ -167,7 +150,7 @@ class SinglePost extends Component {
     };
 
     render() {
-        const { post, redirectToHome, redirectToSignin, comments } = this.state;
+        const { post, redirectToHome, redirectToSignin} = this.state;
 
         if (redirectToHome) {
             return <Redirect to={`/`} />;
@@ -177,17 +160,10 @@ class SinglePost extends Component {
 
         return (
             <div className="container">
-                <h2 className="display-2 mt-5 mb-5">{post.title}</h2>
 
-                {!post ? (
-                    <div className="jumbotron text-center">
-                        <h2>Loading...</h2>
-                    </div>
-                ) : (
-                    this.renderPost(post)
-                )}
 
-                <Comment postId={post._id} comments={comments.reverse()} updateComments={this.updateComments} />
+                {!post ? <Spinner/> : this.renderPost(post)}
+
             </div>
         );
     }
