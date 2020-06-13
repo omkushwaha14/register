@@ -46,7 +46,7 @@ class Comment extends Component {
                         console.log(data.error);
                     } else {
                         this.setState({ text: "" });
-                        // dispatch fresh list of coments to parent (SinglePost)
+
                         this.props.updateComments(data.comments);
                     }
                 }
@@ -83,7 +83,7 @@ class Comment extends Component {
 
         return (
             <div>
-                <h2 className="mt-5 mb-5">Leave a comment</h2>
+                <h4 className="mt-5 mb-5">Leave a comment</h4>
 
                 <form onSubmit={this.addComment}>
                     <div className="form-group">
@@ -110,6 +110,8 @@ class Comment extends Component {
                 <div className="col-md-12">
                     <h3 className="text-primary">{comments.length} Comments</h3>
                     <hr />
+
+
                     {comments.map((comment, i) => (
                         <div key={i}>
                             <div>
@@ -124,39 +126,39 @@ class Comment extends Component {
                                         width="30px"
 
                                         src={`/api/user/photo/${comment.postedBy._id}`}
-                                        alt={comment.postedBy.name}
+
                                     />
                                 </Link>
-                                <div>
-                                    <p className="lead">{comment.text}</p>
-                                    <p className="font-italic mark">
-                                        Posted by{" "}
-                                        <Link
-                                            to={`/user/${comment.postedBy._id}`}
-                                        >
-                                            {comment.postedBy.name}{" "}
-                                        </Link>
-                                        on{" "}
-                                        {new Date(
-                                            comment.created
-                                        ).toDateString()}
-                                        <span>
+                                <p className="font-italic mark">
+                                    Posted by{" "}
+                                    <Link to={`/user/${comment.postedBy._id}`}>
+                                        {comment.postedBy.name}{" "}
+                                    </Link>
+                                    on{" "}
+                                    {new Date(
+                                        comment.created
+                                    ).toDateString()}
+                                    <span>
                                             {isAuthenticated().user &&
-                                                isAuthenticated().user._id ===
-                                                    comment.postedBy._id && (
-                                                    <>
-                                                        <span
+                                            isAuthenticated().user._id ===
+                                            comment.postedBy._id && (
+                                                <>
+                                                        <button
                                                             onClick={() =>
                                                                 this.deleteConfirmed(
                                                                     comment
                                                                 )
                                                             }
-                                                            className="text-danger float-right mr-1">Delete
-                                                        </span>
-                                                    </>
-                                                )}
+                                                            className="btn-danger float-right mr-1">Delete
+                                                        </button>
+                                                </>
+                                            )}
                                         </span>
-                                    </p>
+                                </p>
+                                <div>
+                                    <p className="lead">{comment.text}</p>
+                                    <hr/>
+
                                 </div>
                             </div>
                         </div>
@@ -168,3 +170,4 @@ class Comment extends Component {
 }
 
 export default Comment;
+ 
