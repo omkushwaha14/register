@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../images/avatar.jpg";
+import Spinner from "../core/Spinner";
 
 class ProfileTabs extends Component {
     render() {
@@ -9,108 +10,123 @@ class ProfileTabs extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <h3 className="text-primary">
-                            {followers.length} Followers
-                        </h3>
-                        <hr />
-                        {followers.map((person, i) => (
-                            <div key={i}>
-                                <div>
-                                    <Link to={`/user/${person._id}`}>
-                                        <img
-                                            style={{
-                                                borderRadius: "80%",
-                                                border: "1px solid black"
-                                            }}
-                                            className="float-left mr-2"
-                                            height="30px"
-                                            width="30px"
-                                            onError={i =>
-                                                (i.target.src = `${DefaultProfile}`)
-                                            }
-                                            src={`/api/user/photo/${person._id}`}
-                                            alt={person.name}
-                                        />
+
+                        <hr/>
+
+                        {!posts.length ? <Spinner/> :
+
+
+                                followers.map((person, i) => (
+                                    <div key={i}>
                                         <div>
-                                            <p className="lead">
-                                                {person.name}
-                                            </p>
+                                            <h4 >
+                                                {followers.length} Followers
+
+                                            </h4>
+                                            <Link to={`/user/${person._id}`}>
+                                                <img
+                                                    style={{
+                                                        borderRadius: "80%",
+                                                        border: "1px solid black"
+                                                    }}
+                                                    className="float-left mr-2"
+                                                    height="30px"
+                                                    width="30px"
+                                                    onError={i =>
+                                                        (i.target.src = `${DefaultProfile}`)
+                                                    }
+                                                    src={`/api/user/photo/${person._id}`}
+                                                    alt={person.name}
+                                                />
+                                                <div>
+                                                    <h6>
+                                                        {person.name}
+                                                    </h6>
+
+                                                </div>
+                                            </Link>
                                         </div>
-                                    </Link>
+                                    </div>
+                                ))
+                            }
+
+
+
+
+                    </div>
+
+
+                    <div className="col-md-4">
+
+                        <hr />
+                        {!posts.length ? <Spinner/> :  following.map((person, i) => (
+                                <div key={i}>
+                                    <div>
+                                        <h4 >
+                                            {following.length} Following
+                                        </h4>
+                                        <Link to={`/user/${person._id}`}>
+                                            <img
+                                                style={{
+                                                    borderRadius: "50%",
+                                                    border: "1px solid black"
+                                                }}
+                                                className="float-left mr-2"
+                                                height="30px"
+                                                width="30px"
+                                                onError={i =>
+                                                    (i.target.src = `${DefaultProfile}`)
+                                                }
+                                                src={`/api/user/photo/${person._id}`}
+                                                alt={person.name}
+                                            />
+                                            <div>
+                                                <h6>
+                                                    {person.name}
+                                                </h6>
+                                                <hr/>
+                                            </div>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+
                     </div>
 
                     <div className="col-md-4">
-                        <h3 className="text-primary">
-                            {following.length} Following
-                        </h3>
+                        <h4 >{posts.length} Posts</h4>
                         <hr />
-                        {following.map((person, i) => (
-                            <div key={i}>
-                                <div>
-                                    <Link to={`/user/${person._id}`}>
-                                        <img
-                                            style={{
-                                                borderRadius: "50%",
-                                                border: "1px solid black"
-                                            }}
-                                            className="float-left mr-2"
-                                            height="30px"
-                                            width="30px"
-                                            onError={i =>
-                                                (i.target.src = `${DefaultProfile}`)
-                                            }
-                                            src={`/api/user/photo/${person._id}`}
-                                            alt={person.name}
-                                        />
-                                        <div>
-                                            <p className="lead">
-                                                {person.name}
-                                            </p>
-                                        </div>
-                                    </Link>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
 
-                    <div className="col-md-4">
-                        <h3 className="text-primary">{posts.length} Posts</h3>
-                        <hr />
-                        {posts.map((post, i) => (
-                            <div key={i}>
-                                <div>
-                                    <Link to={`/post/${post._id}`}>
-                                        <div>
+                        {!posts.length ? <Spinner/> :posts.map((post, i) => (
+                                <div key={i}>
 
-                                            <div className="card-body">
+                                        <Link to={`/post/${post._id}`}> </Link>
+
+                                                <div className="card-body">
                                                 <img
                                                     src={`/api/post/photo/${post._id}`}
-                                                    alt={post.title}
-
-                                                    className="img-thunbnail mb-3"
-                                                    style={{ height: "200px", width: "100%" }}
+                                                    className="img-thunbnail mb-4"
+                                                    style={{ height: "300px", width: "107%" }}
                                                 />
-                                                <h5 className="card-title">{post.title}</h5>
-                                                <p className="card-text">
-                                                    {post.body}
-                                                </p>
-                                                <br />
+                                                <Link to={`/post/${post._id}`}>
+                                                    <h5 className="card-title">{post.title}</h5></Link>
 
+                                                <p className="card-text">
+                                                    {post.body.substring(0, 150)}
+                                                </p>
                                                 <Link
                                                     to={`/post/${post._id}`}
                                                     className="btn btn-raised btn-primary btn-sm">
                                                     Read more
                                                 </Link>
+                                                    <hr/>
                                             </div>
 
-                                        </div>
-                                    </Link>
+
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+
+
                     </div>
                 </div>
             </div>
