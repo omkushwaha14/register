@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
 import { create } from "./apiPost";
 import { Redirect } from "react-router-dom";
-
+import Spinner from "../core/Spinner";
 class NewPost extends Component {
     constructor() {
         super();
@@ -31,12 +31,13 @@ class NewPost extends Component {
                 loading: false
             });
             return false;
-        }
-        if (title.length === 0 || body.length === 0) {
-            this.setState({ error: "All fields are required", loading: false });
+        }      if (title.length === 0 || body.length === 0) {
+            this.setState({ error: "Body,title fields is required", loading: false });
             return false;
         }
         return true;
+
+
     };
 
     handleChange = name => event => {
@@ -74,27 +75,6 @@ class NewPost extends Component {
     newPostForm = (title, body) => (
         <form>
 
-            <div className="mb-3" >
-                <textarea className="form-control "   type="text"
-                          onChange={this.handleChange("body")}
-                          placeholder="write here..." value={body} style={{ height: "200px", width: "100%" }} />
-                <small className="feedback">
-                     you can write blogs/quote anything you like.
-                </small>
-            </div>
-
-            <div className="custom-file">
-                <label className="custom-file-label" >Upload</label>
-                <input type="file" className="custom-file-input" id="customFile"
-                       onChange={this.handleChange("photo")}
-                />
-                    <label className="custom-file-label" htmlFor="customFile">Upload image</label>
-                <small className="feedback">
-                    you can upload blogs,comedy/meme image here.
-                </small>
-            </div>
-
-
             <div className="form-group">
                 <label className="text-muted">Title</label>
                 <input
@@ -108,15 +88,27 @@ class NewPost extends Component {
                 </small>
             </div>
 
+            <div className="mb-3" >
+                <textarea className="form-control "   type="text"
+                          onChange={this.handleChange("body")}
+                          placeholder="write here..." value={body} style={{ height: "200px", width: "100%" }} />
+                <small className="feedback">
+                     you can write blogs/quote anything you like.
+                </small>
+            </div>
 
+            <div className="form-group">
+                <label className="text-muted">Post Photo</label>
+                <input
+                    onChange={this.handleChange("photo")}
+                    type="file"
+                    accept="image/*"
+                    className="form-control"/>
 
-
-
-
-
-
-
-
+                <small className="feedback">
+                    you can upload blogs pic/ meme anything picture u like.
+                </small>
+            </div>
 
 
             <button onClick={this.clickSubmit}
@@ -137,7 +129,7 @@ class NewPost extends Component {
         } = this.state;
 
         if (redirectToProfile) {
-            return <Redirect to={`/user/${user._id}`} />;
+            return <Redirect to='/' />;
         }
 
         return (
@@ -145,20 +137,17 @@ class NewPost extends Component {
                 <h2 className="mt-5 mb-5">Create a new post</h2>
                 <div
                     className="alert alert-danger"
-                    style={{ display: error ? "" : "none" }}
-                >
+                    style={{ display: error ? "" : "none" }}>
                     {error}
                 </div>
 
-                {loading ? (
-                    <div className="jumbotron text-center">
-                        <h2>Loading...</h2>
-                    </div>
+                {loading ? (<Spinner/>
+
                 ) : (
-                    ""
+                    this.newPostForm(title, body)
                 )}
 
-                {this.newPostForm(title, body)}
+
             </div>
         );
     }
