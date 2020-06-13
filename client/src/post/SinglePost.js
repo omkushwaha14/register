@@ -102,6 +102,7 @@ class SinglePost extends Component {
                         width="30px"
 
                         src={`/api/user/photo/${post.postedBy._id}`}
+                        alt={''}
                         />
 
                 </Link>
@@ -109,7 +110,9 @@ class SinglePost extends Component {
                     Posted by <Link to={`${posterId}`}>{posterName} </Link>
                     on {new Date(post.created).toDateString()}
                 </p>
-                <img src={`/api/post/photo/${post._id}`} style={{ height: "600px", width: "100%" }}/>
+                <img src={`/api/post/photo/${post._id}`} style={{ height: "600px", width: "100%" }}
+                     alt={''}
+                />
 
                 <p className="card-text"  style={{ whiteSpace: 'pre-wrap' }}>{post.body}</p>
                 <br />
