@@ -1,4 +1,4 @@
- import React, { Component } from "react";
+import React, { Component } from "react";
 import { singlePost, update } from "./apiPost";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
@@ -137,7 +137,7 @@ class EditPost extends Component {
             body,
             redirectToProfile,
             error,
-            loading
+
         } = this.state;
 
         if (redirectToProfile) {
@@ -160,6 +160,7 @@ class EditPost extends Component {
                             style={{ height: "200px", width: "200px" }}
                             className="img-thumbnail"
                             src={`/api/post/photo/${id}?${new Date().getTime()}`}
+                            alt={''}
                             />
 
 
