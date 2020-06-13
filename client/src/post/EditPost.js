@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { singlePost, update } from "./apiPost";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
+import Spinner from "../core/Spinner";
 
 
 class EditPost extends Component {
@@ -53,6 +54,7 @@ class EditPost extends Component {
             return false;
         }
         return true;
+
     };
 
     handleChange = name => event => {
@@ -115,6 +117,7 @@ class EditPost extends Component {
                     type="text"
                     className="form-control"
                     value={body}
+                    style={{ height: "300px", width: "100%" }}
                 />
             </div>
 
@@ -138,40 +141,37 @@ class EditPost extends Component {
         } = this.state;
 
         if (redirectToProfile) {
-            return <Redirect to={`/user/${isAuthenticated().user._id}`} />;
+            return <Redirect to= '/' />;
         }
 
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5">{title}</h2>
 
-                <div
-                    className="alert alert-danger"
-                    style={{ display: error ? "" : "none" }}
-                >
-                    {error}
-                </div>
+                {!body.length ? <Spinner/> :
 
-                {loading ? (
-                    <div className="jumbotron text-center">
-                        <h2>Loading...</h2>
-                    </div>
-                ) : (
-                    ""
-                )}
+                    <div className="container">
 
-                <img
-                    style={{ height: "200px", width: "auto" }}
-                    className="img-thumbnail"
-                    src={`/api/post/photo/${id}?${new Date().getTime()}`}
-                    alt={title}
-                />
+                        <div
+                            className="alert alert-danger"
+                            style={{ display: error ? "" : "none" }}>
+                            {error}
+                        </div>
+                        <img
+                            style={{ height: "200px", width: "200px" }}
+                            className="img-thumbnail"
+                            src={`/api/post/photo/${id}?${new Date().getTime()}`}
+                            />
 
-                {isAuthenticated().user.role === "admin" &&
-                    this.editPostForm(title, body)}
 
-                {isAuthenticated().user._id === id &&
-                    this.editPostForm(title, body)}
+                        {isAuthenticated().user._id === id &&
+                        this.editPostForm(title, body)}
+                    </div>}
+
+
+
+
+
+
             </div>
         );
     }
