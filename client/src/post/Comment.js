@@ -126,7 +126,7 @@ class Comment extends Component {
                                         width="30px"
 
                                         src={`/api/user/photo/${comment.postedBy._id}`}
-
+                                         alt={''}
                                     />
                                 </Link>
                                 <p className="font-italic mark">
@@ -170,4 +170,3 @@ class Comment extends Component {
 }
 
 export default Comment;
- 
