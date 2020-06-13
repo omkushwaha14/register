@@ -94,15 +94,11 @@ class Signup extends Component {
                 <h2 className="mt-5 mb-5">Signup</h2>
 
                 <hr />
-
-
-                <hr />
                 <br />
 
                 <div
                     className="alert alert-danger"
-                    style={{ display: error ? "" : "none" }}
-                >
+                    style={{ display: error ? "" : "none" }}>
                     {error}
                 </div>
 
