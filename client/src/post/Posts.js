@@ -58,6 +58,7 @@ class Posts extends Component {
                                         width="30px"
 
                                         src={`/api/user/photo/${post.postedBy._id}`}
+                                        alt={''}
                                          />
 
 
@@ -70,6 +71,7 @@ class Posts extends Component {
                                     src={`/api/post/photo/${post._id}`}
                                     className="img-thunbnail mb-3"
                                     style={{ height: "250px", width: "100%" }}
+                                    alt={''}
                                 />
                                 <h5 className="card-title" style={{ whiteSpace: 'pre-wrap' }}>{post.title}</h5>
                                 <p className="card-text" style={{ whiteSpace: 'pre-wrap' }}>
@@ -89,7 +91,7 @@ class Posts extends Component {
     };
 
     render() {
-        const { posts,page } = this.state;
+        const { posts } = this.state;
         return (
             <div className="container">
                 {!posts.length ? <Spinner/> : this.renderPosts(posts)}
