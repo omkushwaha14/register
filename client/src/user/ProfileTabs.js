@@ -107,6 +107,7 @@ class ProfileTabs extends Component {
                                                     src={`/api/post/photo/${post._id}`}
                                                     className="img-thunbnail mb-4"
                                                     style={{ height: "300px", width: "107%" }}
+                                                    alt={''}
                                                 />
                                                 <Link to={`/post/${post._id}`}>
                                                     <h5 className="card-title">{post.title}</h5></Link>
