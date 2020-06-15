@@ -20,8 +20,9 @@ const App = () => {
         <Router>
             <Fragment>
 
-             
+             <div className="container">
                     <Menu />
+        </div>
                 <Switch>
 
                     <PrivateRoute exact path="/" component={Home} />
