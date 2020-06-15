@@ -104,13 +104,47 @@ class Signup extends Component {
 
                 <div
                     className="alert alert-info"
-                    style={{ display: open ? "" : "none" }}
-                >
+                    style={{ display: open ? "" : "none" }}>
                     New account is successfully created. Please{" "}
                     <Link to="/signin">Sign In</Link>.
                 </div>
 
                 {this.signupForm(name, email, password )}
+
+                <hr/>
+                <footer className="page-footer font-small unique-color-dark pt-4 bg-light">
+
+
+                    <div className="container">
+
+
+                        <ul className="list-unstyled list-inline text-center py-4">
+                            <li className="list-inline-item">
+                                <Link to="/signup"> <h6 className="mb-1">privacy</h6></Link>
+
+                            </li>
+                            <li className="list-inline-item">
+                                <Link to="/signup"> <h6 className="mb-1">what is wordbok?</h6></Link>
+
+                            </li>
+                            <li className="list-inline-item">
+                                <Link to="/signup"> <h6 className="mb-1">Terms and condition</h6></Link>
+
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+
+
+                    <div className="footer-copyright text-center py-3">©Copyright 2020:Wordbok
+
+                    </div>
+
+
+                </footer>
+
             </div>
         );
     }
