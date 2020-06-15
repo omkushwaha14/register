@@ -20,17 +20,17 @@ const App = () => {
         <Router>
             <Fragment>
 
-                <section className="container">
+             
                     <Menu />
                 <Switch>
 
-                    <Route exact path="/" component={Home} />
+                    <PrivateRoute exact path="/" component={Home} />
 
                     <Route exact path="/forgot-password" component={ForgotPassword} />
                     <Route exact path="/reset-password/:resetPasswordToken" component={ResetPassword}
                     />
                     <PrivateRoute exact path="/post/create" component={NewPost} />
-                    <Route exact path="/post/:postId" component={SinglePost} />
+                    <PrivateRoute exact path="/post/:postId" component={SinglePost} />
                     <PrivateRoute
                         exact
                         path="/post/edit/:postId"
@@ -42,7 +42,7 @@ const App = () => {
                     <PrivateRoute exact path="/findpeople" component={FindPeople} />
                     <PrivateRoute exact path="/user/:userId" component={Profile} />
                     </Switch>
-                </section>
+             
                     </Fragment>
         </Router>
 
