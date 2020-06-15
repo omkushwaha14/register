@@ -7,9 +7,9 @@ const Home = () => (
             <h2>welcome to wordbok</h2>
             <p className="lead">here you can create blogs,share memes, comedy pictures </p>
         </div>
-        <div className="container">
+        
             <Posts />
-        </div>
+       
     </div>
 );
 
