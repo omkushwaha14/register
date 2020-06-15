@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { signin, authenticate } from "../auth";
 
@@ -45,8 +45,10 @@ class Signin extends Component {
         }
     };
 
+
     signinForm = (email, password) => (
         <form>
+
             <div className="form-group">
                 <label className="text-muted">Email</label>
                 <input
@@ -93,13 +95,8 @@ class Signin extends Component {
 
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5">SignIn</h2>
+                <h4 className="mt-5">SignIn</h4>
                 <hr />
-
-
-
-                <br />
-
                 <div
                     className="alert alert-danger"
                     style={{ display: error ? "" : "none" }}
@@ -113,7 +110,7 @@ class Signin extends Component {
                 )}
 
                 {this.signinForm(email, password)}
-
+<hr/>
                 <p>
                     <Link
                         to="/forgot-password"
@@ -122,6 +119,49 @@ class Signin extends Component {
                         Forgot Password
                     </Link>
                 </p>
+                <div
+                    className="alert alert-info">
+                    Create new account. Please{"  "}
+                    <Link to="/signup">SignUp</Link>.
+                </div>
+
+<hr/>
+                <footer className="page-footer font-small unique-color-dark pt-4 bg-light">
+
+
+                    <div className="container">
+
+
+                        <ul className="list-unstyled list-inline text-center py-4">
+                            <li className="list-inline-item">
+                                <Link to="/signup"> <h6 className="mb-1">privacy</h6></Link>
+
+                            </li>
+                            <li className="list-inline-item">
+                                <Link to="/signup"> <h6 className="mb-1">what is wordbok?</h6></Link>
+
+                            </li>
+                            <li className="list-inline-item">
+                                <Link to="/signup"> <h6 className="mb-1">Terms and condition</h6></Link>
+
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+
+
+                    <div className="footer-copyright text-center py-3">©Copyright 2020:Wordbok
+
+                    </div>
+
+
+                </footer>
+
+
+
+
             </div>
         );
     }
