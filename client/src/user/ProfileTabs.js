@@ -94,17 +94,16 @@ class ProfileTabs extends Component {
                     </div>
 
                     <div className="col-md-4">
-                        <h4 >{posts.length} Posts</h4>
+                     
                         <hr />
 
                         {!posts.length ? <Spinner/> :posts.map((post, i) => (
                                 <div key={i}>
-
+                                        <h4 >{posts.length} Posts</h4>
                                         <Link to={`/post/${post._id}`}> </Link>
 
                                                 <div className="card-body">
-                                                <img
-                                                    src={`/api/post/photo/${post._id}`}
+                                                <img src={`/api/post/photo/${post._id}`}
                                                     className="img-thunbnail mb-4"
                                                     style={{ height: "300px", width: "107%" }}
                                                     alt={''}
