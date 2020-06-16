@@ -95,9 +95,9 @@ class Profile extends Component {
         {!posts.length ? <Spinner/> :
             <div className="row">
             <div className="col-md-4">
-            <img
-                style={{ height: "200px", width: "auto" }}
-                className="img-thumbnail"
+                    <img
+                style={{ height: "300px", width: "300px", borderRadius: "50%",verticalAlign:"middle" }}
+                className="avatar-round"
                 src={photoUrl}
                 onError={i => (i.target.src = `${DefaultProfile}`)}
                 alt={user.name}/>
