@@ -38,12 +38,13 @@ class DeleteUser extends Component {
             return <Redirect to="/" />;
         }
         return (
-            <button
-                onClick={this.deleteConfirmed}
-                className="btn btn-raised btn-danger"
-            >
-                Delete Profile
-            </button>
+                 <div className="d-inline-block">
+        <button
+            onClick={this.deleteConfirmed}
+            className="btn btn-raised btn-danger mr-2">
+            Delete Profile
+        </button>
+            </div>
         );
     }
 }
