@@ -131,6 +131,7 @@ class SinglePost extends Component {
                     )}
 
                     <div>
+                     <hr/>
                         {like ? (
                             <h3 onClick={this.likeToggle}>
                                 <i
@@ -148,6 +149,7 @@ class SinglePost extends Component {
                                 {likes} likes
                             </h4>
                         )}
+                       <hr/>
                         <Comment postId={post._id} comments={this.state.comments.reverse()} updateComments={this.updateComments} />
                     </div>
                 </div>
