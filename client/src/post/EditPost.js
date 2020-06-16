@@ -117,7 +117,7 @@ class EditPost extends Component {
                     type="text"
                     className="form-control"
                     value={body}
-                    style={{ height: "300px", width: "100%" }}
+                    style={{ height: "400px", width: "100%" }}
                 />
             </div>
 
