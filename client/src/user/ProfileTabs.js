@@ -11,18 +11,13 @@ class ProfileTabs extends Component {
                 <div className="row">
                     <div className="col-md-4">
 
+                            {!followers.length  ? <Spinner/> :  <h5>Followers: {followers.length}</h5> }
+
                         <hr/>
+                    </div>
+                        {!followers.length ? <Spinner/> : followers.map((person, i) => (
+                                    <div key={i} className="col-md-4">
 
-                        {!followers.length ? <Spinner/> :
-
-
-                                followers.map((person, i) => (
-                                    <div key={i}>
-                                        <div>
-                                            <h4 >
-                                                {followers.length} Followers
-
-                                            </h4>
                                             <Link to={`/user/${person._id}`}>
                                                 <img
                                                     style={{
@@ -42,30 +37,24 @@ class ProfileTabs extends Component {
                                                     <h6>
                                                         {person.name}
                                                     </h6>
-
                                                 </div>
                                             </Link>
-                                        </div>
+
                                     </div>
-                                ))
-                            }
+                                ))}
 
-
-
-
-                    </div>
 
 
                     <div className="col-md-4">
+                        <h5>
 
+                            {!following.length  ? <Spinner/> :  <h5> Following: {following.length}</h5> }
+                        </h5>
                         <hr />
-                        {!following.length ? <Spinner/> :  following.map((person, i) => (
-                                <div key={i}>
-                                    <div>
-                                        <h4 >
-                                            {following.length} Following
-                                        </h4>
-                                        <Link to={`/user/${person._id}`}>
+                    </div>
+                        {!following.length  ? <Spinner/> :  following.map((person, i) => (
+                                <div key={i} className="col-md-4">
+                                    <Link to={`/user/${person._id}`}>
                                             <img
                                                 style={{
                                                     borderRadius: "50%",
@@ -78,38 +67,36 @@ class ProfileTabs extends Component {
                                                     (i.target.src = `${DefaultProfile}`)
                                                 }
                                                 src={`/api/user/photo/${person._id}`}
-                                                alt={person.name}
-                                            />
+                                                alt={person.name}/>
                                             <div>
                                                 <h6>
                                                     {person.name}
                                                 </h6>
-                                                <hr/>
+
                                             </div>
                                         </Link>
-                                    </div>
+
                                 </div>
                             ))}
 
-                    </div>
 
                     <div className="col-md-4">
-                     
+
+                        {!posts.length  ? <Spinner/> :  <h5> Posts: {posts.length} </h5> }
                         <hr />
+                    </div>
+                        {!posts.length  ? <Spinner/> :posts.map((post) => (
+                               <div className="card-body">
 
-                        {!posts.length ? <Spinner/> :posts.map((post, i) => (
-                                <div key={i}>
-                                        <h4 >{posts.length} Posts</h4>
-                                        <Link to={`/post/${post._id}`}> </Link>
-
-                                                <div className="card-body">
-                                                <img src={`/api/post/photo/${post._id}`}
+                                                <img
+                                                    src={`/api/post/photo/${post._id}`}
                                                     className="img-thunbnail mb-4"
                                                     style={{ height: "300px", width: "107%" }}
                                                     alt={''}
                                                 />
                                                 <Link to={`/post/${post._id}`}>
-                                                    <h5 className="card-title">{post.title}</h5></Link>
+                                                    <h5 className="card-title">{post.title}</h5>
+                                                </Link>
 
                                                 <p className="card-text">
                                                     {post.body.substring(0, 150)}
@@ -117,17 +104,12 @@ class ProfileTabs extends Component {
                                                 <Link
                                                     to={`/post/${post._id}`}
                                                     className="btn btn-raised btn-primary btn-sm">
-                                                    Read more
+                                                    Read more..
                                                 </Link>
                                                     <hr/>
                                             </div>
+                                        ))}
 
-
-                                </div>
-                            ))}
-
-
-                    </div>
                 </div>
             </div>
         );
