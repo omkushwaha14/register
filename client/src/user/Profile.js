@@ -94,23 +94,15 @@ class Profile extends Component {
 
         {!posts.length ? <Spinner/> :
             <div className="row">
-   <div className="row justify-content-md-center">
-
-              <img style={{ height: "200px", width: "auto" }}
+            <div className="col-md-4">
+            <img
+                style={{ height: "200px", width: "auto" }}
                 className="img-thumbnail"
                 src={photoUrl}
                 onError={i => (i.target.src = `${DefaultProfile}`)}
                 alt={user.name}/>
-
-                </div>
-
-
-
-
-
-
-
-          <table className='table'>
+          </div>
+  <table className='table'>
 
             <thead>
             <tr>
