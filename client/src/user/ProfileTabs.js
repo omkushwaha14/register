@@ -13,7 +13,7 @@ class ProfileTabs extends Component {
 
                         <hr/>
 
-                        {!posts.length ? <Spinner/> :
+                        {!followers.length ? <Spinner/> :
 
 
                                 followers.map((person, i) => (
@@ -59,7 +59,7 @@ class ProfileTabs extends Component {
                     <div className="col-md-4">
 
                         <hr />
-                        {!posts.length ? <Spinner/> :  following.map((person, i) => (
+                        {!following.length ? <Spinner/> :  following.map((person, i) => (
                                 <div key={i}>
                                     <div>
                                         <h4 >
