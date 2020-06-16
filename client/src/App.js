@@ -14,7 +14,7 @@ import SinglePost from "./post/SinglePost";
 import PrivateRoute from "./auth/PrivateRoute";
 import ForgotPassword from "./user/ForgotPassword";
 import ResetPassword from "./user/ResetPassword";
-
+import Privacy from "./user/Privacy";
 const App = () => {
     return(
         <Router>
@@ -26,7 +26,7 @@ const App = () => {
                 <Switch>
 
                     <PrivateRoute exact path="/" component={Home} />
-
+                     <Route exact path="/privacy" component={Privacy} />
                     <Route exact path="/forgot-password" component={ForgotPassword} />
                     <Route exact path="/reset-password/:resetPasswordToken" component={ResetPassword}
                     />
