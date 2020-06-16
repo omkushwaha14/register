@@ -135,13 +135,13 @@ class Profile extends Component {
           isAuthenticated().user._id === user._id ? (
               <div className="d-inline-block">
                 <Link
-                    className="btn btn-raised btn-success mr-5"
+                    className="btn btn-raised btn-success mr-2"
                     to={`/post/create`}>
                   Create Post
                 </Link>
 
                 <Link
-                    className="btn btn-raised btn-success mr-5"
+                    className="btn btn-raised btn-success mr-2"
                     to={`/user/edit/${user._id}`}>
                   Edit Profile
                 </Link>
