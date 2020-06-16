@@ -97,7 +97,7 @@ class Profile extends Component {
             <div className="col-md-4">
                     <img
                 style={{ height: "300px", width: "300px", borderRadius: "50%",verticalAlign:"middle" }}
-                className="avatar-round"
+                className="avatar"
                 src={photoUrl}
                 onError={i => (i.target.src = `${DefaultProfile}`)}
                 alt={user.name}/>
