@@ -134,17 +134,11 @@ class Signin extends Component {
 
                         <ul className="list-unstyled list-inline text-center py-4">
                             <li className="list-inline-item">
-                                <Link to="/signup"> <h6 className="mb-1">privacy</h6></Link>
+                                <Link to="/privacy"> <h6 className="mb-1">privacy policy</h6></Link>
 
                             </li>
-                            <li className="list-inline-item">
-                                <Link to="/signup"> <h6 className="mb-1">what is wordbok?</h6></Link>
-
-                            </li>
-                            <li className="list-inline-item">
-                                <Link to="/signup"> <h6 className="mb-1">Terms and condition</h6></Link>
-
-                            </li>
+                       
+ 
                         </ul>
 
 
