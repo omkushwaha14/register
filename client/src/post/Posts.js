@@ -77,10 +77,11 @@ class Posts extends Component {
                                 <p className="card-text" style={{ whiteSpace: 'pre-wrap' }}>
                                     {post.body.substring(0, 200)}
                                 </p>
+                                   <hr/>
                                 <Link
                                     to={`/post/${post._id}`}
                                     className="btn btn-raised btn-primary btn-sm">
-                                    Read more
+                                    See more..
                                 </Link>
                             </div>
                         </div>
