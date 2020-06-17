@@ -51,29 +51,26 @@ class FindPeople extends Component {
         <div className="row">
             {users.map((user, i) => (
                 <div className="card col-md-4" key={i}>
+                    <div className="card-body">
                     <img
-                        style={{ height: "300px", width: "auto" }}
-                        className="rounded-lg"
+                        style={{ height: "300px", width: "300px", borderRadius: "50%",verticalAlign:"middle" }}
+                        className="avatar"
                         src={`/api/user/photo/${
                             user._id
                         }`}
                         onError={i => (i.target.src = `${DefaultProfile}`)}
                         alt={user.name}/>
 
-                    <div className="card-body">
                         <h5 className="card-title">{user.name}</h5>
-                        <p className="card-text">{user.email}</p>
+                        <hr/>
                         <Link
                             to={`/user/${user._id}`}
-                            className="btn btn-raised btn-primary btn-sm">
-                            View Profile
+                            className="btn btn-raised btn-primary btn-sm">View Profile
                         </Link>
 
                         <button
                             onClick={() => this.clickFollow(user, i)}
-                            className="btn btn-raised btn-info float-right btn-sm"
-                        >
-                            Follow
+                            className="btn btn-raised btn-info float-right btn-sm">Follow
                         </button>
                     </div>
                 </div>
@@ -85,7 +82,7 @@ class FindPeople extends Component {
         const { users, open, followMessage } = this.state;
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5">Find People</h2>
+                <h3 className="mt-5 mb-5">Friends you may know</h3>
 
                 {open && (
                     <div className="alert alert-success">{followMessage}</div>
