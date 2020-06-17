@@ -46,7 +46,7 @@ class SinglePost extends Component {
             this.setState({ redirectToSignin: true });
             return false;
         }
-        let callApi = this.state.like ? unlike : like;
+        let callApi = this.state.like ? like : like;
         const userId = isAuthenticated().user._id;
         const postId = this.state.post._id;
         const token = isAuthenticated().token;
@@ -138,7 +138,7 @@ class SinglePost extends Component {
                                     className="fa fa-thumbs-up"
                                     style={{ padding: '10px', borderRadius: '50%' }}
                                 />{' '}
-                                {likes} likes
+                                {likes} votes
                             </h3>
                         ) : (
                             <h4 onClick={this.likeToggle}>
@@ -146,7 +146,7 @@ class SinglePost extends Component {
                                     className="fa fa-thumbs-up "
                                     style={{ padding: '10px', borderRadius: '50%' }}
                                 />{' '}
-                                {likes} likes
+                                {likes} votes
                             </h4>
                         )}
                        <hr/>
