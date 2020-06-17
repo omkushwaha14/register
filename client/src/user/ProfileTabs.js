@@ -86,19 +86,20 @@ class ProfileTabs extends Component {
                         <hr />
                     </div>
                         {!posts.length  ? <Spinner/> :posts.map((post) => (
+                           <div className="card col-md-4">
                                <div className="card-body">
 
                                                 <img
                                                     src={`/api/post/photo/${post._id}`}
                                                     className="img-thunbnail mb-4"
-                                                    style={{ height: "300px", width: "107%" }}
+                                                    style={{ height: "250px", width: "100%" }}
                                                     alt={''}
                                                 />
                                                 <Link to={`/post/${post._id}`}>
-                                                    <h5 className="card-title">{post.title}</h5>
+                                                    <h5 className="card-title"  style={{ whiteSpace: 'pre-wrap' }}>{post.title}</h5>
                                                 </Link>
 
-                                                <p className="card-text">
+                                                <p className="card-text"  style={{ whiteSpace: 'pre-wrap' }}>
                                                     {post.body.substring(0, 150)}
                                                 </p>
                                                 <Link
@@ -108,9 +109,10 @@ class ProfileTabs extends Component {
                                                 </Link>
                                                     <hr/>
                                             </div>
+                           </div>
                                         ))}
+                         </div>
 
-                </div>
             </div>
         );
     }
