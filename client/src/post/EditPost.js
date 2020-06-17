@@ -156,14 +156,6 @@ class EditPost extends Component {
                             style={{ display: error ? "" : "none" }}>
                             {error}
                         </div>
-                        <img
-                            style={{ height: "200px", width: "200px" }}
-                            className="img-thumbnail"
-                            src={`/api/post/photo/${id}?${new Date().getTime()}`}
-                            alt={''}
-                            />
-
-
                         {isAuthenticated().user._id === id &&
                         this.editPostForm(title, body)}
                     </div>}
