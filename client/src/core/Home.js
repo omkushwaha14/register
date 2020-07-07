@@ -9,8 +9,36 @@ const Home = () => (
         </div>
         
             <Posts />
+<footer className="page-footer font-small unique-color-dark pt-4 bg-light">
+
+
+                    <div className="container">
+
+
+                        <ul className="list-unstyled list-inline text-center py-4">
+                            <li className="list-inline-item">
+                                <Link to="/privacy"> <h6 className="mb-1">privacy policy</h6></Link>
+
+                            </li>
+                       
+ 
+                        </ul>
+
+
+                    </div>
+
+
+
+                    <div className="footer-copyright text-center py-3">©Copyright 2020:Wordbok
+
+                    </div>
+
+
+                </footer>
        
     </div>
+
+                
 );
 
 export default Home;
