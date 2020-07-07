@@ -25,13 +25,13 @@ const App = () => {
         </div>
                 <Switch>
 
-                    <PrivateRoute exact path="/" component={Home} />
+                    <Route exact path="/" component={Home} />
                      <Route exact path="/privacy" component={Privacy} />
                     <Route exact path="/forgot-password" component={ForgotPassword} />
                     <Route exact path="/reset-password/:resetPasswordToken" component={ResetPassword}
                     />
                     <PrivateRoute exact path="/post/create" component={NewPost} />
-                    <PrivateRoute exact path="/post/:postId" component={SinglePost} />
+                    <Route exact path="/post/:postId" component={SinglePost} />
                     <PrivateRoute
                         exact
                         path="/post/edit/:postId"
