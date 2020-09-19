@@ -9,7 +9,7 @@ exports.sendEmail = emailData => {
     secure: false,
     auth: {
       user: 'omkushwaha14@gmail.com',
-      pass: '@omkushwaha@'
+      pass: 'xxxxxxxxxxxxxx'
     }
   });
   return transporter
