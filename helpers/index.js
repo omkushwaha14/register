@@ -4,13 +4,13 @@ const defaultEmailData = { from: "noreply@node-react.com" };
 
 exports.sendEmail = emailData => {
   const transporter = nodeMailer.createTransport({
-    host: "smtp.gmail.com",
+    service: "gmail",
     port: 587,
     secure: false,
     requireTLS: true,
     auth: {
-      user: "masterjupiter2015@gmail.com",
-      pass: "kshzlmomlthllktq"
+      user: "omkushwaha14@gmail.com",
+      pass: "@omkushwaha@"
     }
   });
   return transporter
